@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改用户信息</title>
+    <script type="text/javascript" src="_ADMIN_JQ_/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="_ADMIN_JQ_/city-data.js"></script>
+    <script type="text/javascript" src="_ADMIN_JQ_/hzw-city-picker.min.js"></script>
+    <script type="text/javascript" src="_ADMIN_JQ_/verify.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="_ADMIN_CSS_/hzw-city-picker.css">
+</head>
+<style type="text/css">
+    .leftBox{
+        position: absolute;
+        box-sizing: border-box;
+        width: 20%;
+        height: 100%;
+        background: #4d5e70 bottom;
+    }
+    .rightBox{
+        box-sizing: border-box;
+        position: absolute;
+        height: 100%;
+        width: 84.5%;
+        background: #e3e8ee bottom;
+        margin-left: 202px;
+    }
+    .content-title{
+        position: absolute;
+        width: 100%;
+        height: 100px;
+        background-color:#4d5e70;
+        color: #828e9a;
+        font-size: 20px;
+        display: block;
+    }
+    .user_modify_item{
+        padding-top: 70px;
+        position: absolute;
+        margin-top: 80px;
+        margin-left: 230px;
+        background: white;
+        /*border: #999999 solid 2px;*/
+        border-radius: 10px;
+        width: 700px;
+        height: 400px;
+        display: inline-block;
+    }
+    .modify_user_button{
+        background: #4d5e70;
+        font-size: 20px;
+        color: white;
+        width: 200px;
+        border-radius: 8px;
+        height: 35px;
+        border: none;
+    }
+</style>
+<body>
+<div class="leftBox">
+    {include file="public/left" /}
+</div>
+
+<div class="rightBox">
+    <div class="content-title">
+        <div style="margin-top: 35px;font-size: 28px" align="center">
+            修改用户信息
+        </div>
+    </div>
+    <div class="content-item item2" style="margin-top: 60px;">
+        <form action="{:url('Admin/user_Modify')}" method="post" id="userModify_form">
+            <div class="user_modify_item">
+                <div style="margin-left: 150px">
+                    <span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;账号：</span>
+                    <input id="username" name="username" value="{$result.username}" placeholder="请输入修改的账号" type="text" style="width: 200px;height: 28px;">
+                    &nbsp;&nbsp;<span id="username_tips" style="display: none;color: red">账号不能为空！</span>
+                </div>
+                <div style="margin-top: 10px;margin-left: 150px">
+                    <span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昵称：</span>
+                    <input id="name" name="name" value="{$result.name}" placeholder="请输入修改的昵称" type="text" style="width: 200px;height: 28px;">
+                    &nbsp;&nbsp;<span id="name_tips" style="display: none;color: red">昵称不能为空！</span>
+                </div>
+                <div style="margin-top: 10px;margin-left: 150px">
+                    <span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱：</span>
+                    <input id="email" name="email" value="{$result.email}" placeholder="请输入修改的邮箱" type="text" style="width: 200px;height: 28px;">
+                    &nbsp;&nbsp;<span id="email_tips" style="display: none;color: red">邮箱不能为空！</span><span id="email_tips2" style="display: none;color: red">请输入正确的邮箱！</span>
+                </div>
+                <div style="margin-top: 10px;margin-left: 150px">
+                    <span style="font-size: 20px;color: #9095ab;">手机号码：</span>
+                    <input id="phone" name="phone" value="{$result.phone}" placeholder="请输入修改的手机" type="text" style="width: 200px;height: 28px;">
+                    &nbsp;&nbsp;<span id="phone_tips" style="display: none;color: red">手机号码不能为空！</span><span id="phone_tips2" style="display: none;color: red">请输入正确的手机号！</span>
+                </div>
+                <div style="margin-top: 10px;margin-left: 150px">
+                    <span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地区：</span>
+                    <input id="cityChoice" name="region" value="{$result.region}" placeholder="请选择用户新所在地区" type="text" style="width: 200px;height: 28px;">
+                    &nbsp;&nbsp;<span id="cityChoice_tips" style="display: none;color: red">地区不能为空！</span>
+                </div>
+                <div style="margin-top: 10px">
+                    <div class="" align="center" style="margin-top: 28px">
+                        <button id="modifyUser_button" class="modify_user_button" type="submit">修改用户信息</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+<script>
+    var cityPicker = new HzwCityPicker({
+        data: data,
+        target: 'cityChoice',
+        valType: 'k-v',
+        hideCityInput: {
+            name: 'city',
+            id: 'city'
+        },
+        hideProvinceInput: {
+            name: 'province',
+            id: 'province'
+        },
+    });
+    cityPicker.init();
+
+    $('#modifyUser_button').on('click',function (e){
+        e.preventDefault();
+        e.stopPropagation();
+        if($('#username').val() != "" && $('#password').val() != "" && $('#name').val() != "" && $('#email').val() != "" && $('#phone').val() != "" && $('#cityChoice').val() != "" ){
+            if( isPhone($('#phone').val()) == false ){
+                document.getElementById("phone_tips2").style.display = "inline-block";
+                $('#phone').focus();
+            }else if( isEmail($('#email').val()) == false ){
+                document.getElementById("email_tips2").style.display = "inline-block";
+                $('#email').focus();
+            }else {
+                var username = $('#username').val();
+                var password = $('#password').val();
+                var name = $('#name').val();
+                var email = $('#email').val();
+                var phone = $('#phone').val();
+                var cityChoice = $('#cityChoice').val();
+                var uid = {$uid};
+
+                $.ajax({
+                    type:"POST",
+                    url:"user_Modify",
+                    dataType:"json",
+                    data:{
+                        username:username,
+                        password:password ,
+                        name:name,
+                        email:email,
+                        phone:phone,
+                        region:cityChoice,
+                        uid:uid,
+                    },
+                    success:function (data)
+                    {
+                        if(data.status == "ok"){
+                            $('#name').val("");
+                            $('#email').val("");
+                            $('#phone').val("");
+                            $('#cityChoice').val("");
+                            $('#name').focus();
+                            $.Pop('成功修改该用户信息！','alert',function(){
+                                window.location.href ="/admin/Admin/userSearch"
+                            });
+                        }else {
+                            $.Pop('修改失败！',{Close:false});
+                        }
+                    }
+                })
+            }
+        }
+        if($('#name').val() == ""){
+            document.getElementById("name_tips").style.display = "inline-block";
+        }else if($('#email').val() == ""){
+            document.getElementById("email_tips").style.display = "inline-block";
+        }else if($('#phone').val() == ""){
+            document.getElementById("phone_tips").style.display = "inline-block";
+        }else if($('#cityChoice').val() == ""){
+            document.getElementById("cityChoice_tips").style.display = "inline-block";
+        }else {
+            return true;
+        }
+    })
+
+    $('#name').focus(function () {
+        document.getElementById("name_tips").style.display = "none";
+    });
+    $('#email').focus(function () {
+        document.getElementById("email_tips").style.display = "none";
+    });
+    $('#phone').focus(function () {
+        document.getElementById("phone_tips").style.display = "none";
+    });
+    $('#cityChoice').focus(function () {
+        document.getElementById("cityChoice_tips").style.display = "none";
+    });
+</script>
+</html>
+

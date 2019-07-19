@@ -1,0 +1,561 @@
+﻿body{
+    min-width: 1000px;
+}
+.container{
+    width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial,  "Microsoft YaHei", "ST Heiti", SimHei, sans-serif;
+}
+::-ms-clear,
+::-ms-reveal{
+    display:none;
+}
+.container button,.container input{
+    font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial,  "Microsoft YaHei", "ST Heiti", SimHei, sans-serif;
+}
+.header{
+    height: 537px;
+    width: 100%;
+    position: relative;
+}
+.header-img{
+    width: 100%;
+    height: 537px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.header-img img{
+    width: 3000px;
+    height: 120%;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: -1500px;
+}
+.banner-box{
+    height: 490px;
+    overflow: hidden;
+}
+.logo img{
+    width: 50px;
+    height: 50px;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+.slogon{
+    float: left;
+    margin: 75px 0 0 7px;
+}
+.slogon .slogon-title{
+    font-size: 36px;
+    line-height: 40px;
+    color: #fff;
+    font-weight: lighter;
+}
+.slogon .slogon-title span{
+    font-weight: bold;
+}
+.slogon .slogon-detail{
+    margin-top: 20px;
+}
+.slogon .slogon-detail span{
+    float: left;
+    font-size: 16px;
+    color: #CFD1D1;
+    line-height: 20px;
+}
+.slogon .slogon-detail img{
+    float: left;
+    width: 10px;
+    height: 16px;
+    margin: 3px 8px 0;
+}
+.success{
+    padding: 30px 30px 32px;
+    width: 240px;
+    float: right;
+    margin-top: 8px;
+    background: #fff;
+    border-radius: 1px;
+    display: none;
+    box-shadow: 0 0 10px rgba(64,68,69,0.4)
+}
+.success-title{
+    line-height: 25px;
+    font-size: 18px;
+    color: #434a54;
+    text-align: center;
+    padding-bottom: 12px;
+}
+.success-title span{
+    position: relative;
+    padding-left: 25px;
+}
+.success-title span em{
+    font-style: normal;
+    font-weight: bold;
+}
+.success-title span img{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -10px;
+}
+.success p{
+    font-size: 14px;
+    color: #696e76;
+    line-height: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.su-qrcode{
+    font-size: 0;
+    text-align: center;
+}
+.su-qrcode img{
+    width: 170px;
+    height: 170px;
+}
+.form{
+    padding: 25px 30px 16px;
+    width: 240px;
+    float: right;
+    margin-top: 8px;
+    background: #fff;
+    border-radius: 1px;
+    box-shadow: 0 0 10px rgba(64,68,69,0.4)
+}
+.form-title{
+    font-size: 0;
+    text-align: center;
+    color: #434a54;
+    vertical-align: middle;
+    padding-bottom: 16px;
+}
+.form-title strong{
+    display: inline-block;
+    line-height: 34px;
+    font-size: 24px;
+    position: relative;
+}
+.form-title img{
+    width: 14px;
+    height: 10px;
+    position: absolute;
+    top: 50%;
+    margin-top: -5px;
+}
+.form-title .from-title-icon-left{
+    left: -22px;
+}
+.form-title .from-title-icon-right{
+    right: -22px;
+}
+.form .item{
+    border: 1px solid #ced2d8;
+    height: 48px;
+    position: relative;
+    overflow: hidden;
+    margin-top: -1px;
+}
+.form .item input{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    line-height: 48px;
+    border: none;
+    outline: none;
+    text-indent: 15px;
+    color: #434a54;
+}
+.form .item label{
+    position: absolute;
+    left: 15px;
+    top: 0;
+    line-height: 48px;
+    color: #aab2bd;
+    font-size: 14px;
+    cursor: text;
+}
+.form .item .code {
+    color: #3f72b5;
+    height: 100%;
+    position: absolute;
+    right: 15px;
+    top: 0;
+    background: none;
+    border: none;
+    padding: 0;
+    outline: none;
+    cursor: pointer;
+}
+.form .item .code:hover {
+    color: #4a85d3;
+}
+.form .item .code-disable,
+.form .item .code-disable:hover{
+    color: #aab2bd;
+    cursor: default;
+}
+.form .error-msg{
+    color: #fe7437;
+    display: none;
+    font-size: 12px;
+    line-height: 16px;
+    padding-top: 5px;
+    margin-bottom: -15px;
+}
+.reg-box{
+    margin-top: 20px;
+}
+.reg-box .btn{
+    border-radius: 1px;
+    font-size: 17px;
+    color: #fff;
+    border: none;
+    outline: none;
+    height: 48px;
+    width: 100%;
+    cursor: pointer;
+    background:#fe9437; /* 一些不支持背景渐变的浏览器 */  
+    background: linear-gradient(to right, #fe9437 25%, #fe7437 50%);
+    background: -webkit-linear-gradient(to right, #fe9437 25%, #fe7437 50%);
+    background: -moz-linear-gradient(to right, #fe9437 25%, #fe7437 50%);
+    background: -o-linear-gradient(to right, #fe9437 25%, #fe7437 50%);
+    
+}
+.reg-box .btn:hover{
+    background:#feb337; /* 一些不支持背景渐变的浏览器 */  
+    background:-o-linear-gradient(left, #feb337, #fe8037);
+    background:-moz-linear-gradient(left, #feb337, #fe8037);
+    background:-webkit-gradient(linear, left, from(#feb337), to(#fe8037));
+    background:-webkit-linear-gradient(left, #feb337, #fe8037);
+}
+.protocal{
+    font-size: 12px;
+    color: #aab2bd;
+    line-height: 16px;
+    padding-top: 10px;
+}
+.protocal a{
+    color: #aab2bd;
+}
+.protocal a:hover{
+    color: #696e76;
+}
+
+.advantage{
+    height: 25%;
+    overflow: hidden;
+    position: relative;
+}
+.aitem{
+    float: left;
+    height: 60px;
+    padding-top: 25px;
+}
+.aitem .aicon{
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    float: left;
+}
+.aitem .aicon img{
+    width: 100%;
+    height: 100%;
+}
+.aitem .adetail{
+    float: left;
+}
+.aitem .adetail p{
+    font-size: 21px;
+    color: #dbdbdb;
+    font-weight: normal;
+}
+.aitem .adetail span{
+    font-size: 16px;
+    color: #C1C2C3;
+    font-weight: normal;
+}
+.aitem-first{
+    margin-right: 76px;
+    margin-left: 37px;
+}
+.aitem-second{
+    margin-right: 72px;
+}
+.aitem-third{
+    margin-right: 60px;
+}
+.arrow{
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    width: 30px;
+    height: 10px;
+    margin-left: -15px;
+}
+.steps{
+    height: 410px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.step-title{
+    font-size: 32px;
+    line-height: 45px;
+    padding-top: 80px;
+    text-align: center;
+    color: #434a54;
+    font-weight: normal;
+}
+.step-icon{
+    width: 725px;
+    height: auto;
+    display: block;
+    margin: 80px auto 0;
+}
+.step-desc{
+    margin-top: 20px;
+    height: 34px;
+    font-size: 0;
+}
+.step-desc p{
+    text-align: center;
+    display: inline-block;
+    font-size: 24px;
+    line-height: 34px;
+    color: #434a54;
+}
+.step-desc .step-step1{
+    width: 336px;
+}
+.step-desc .step-step2{
+    width: 330px;
+}
+.step-desc .step-step3{
+    width: 330px;
+}
+.steps-half-circle{
+    width: 37px;
+    height: 17px;
+    position: absolute;
+    left: -87px;
+    bottom: 0;
+}
+.steps-full-circle{
+    width: 144px;
+    height: 120px;
+    position: absolute;
+    right: -144px;
+    top: 0;
+}
+.steps .container{
+    height: 100%;
+}
+
+.trust{
+    height: 296px;
+    width: 100%;
+    position: relative;
+}
+.trust-img{
+    width: 100%;
+    height: 296px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.trust-img img{
+    width: 3000px;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: -1500px;
+}
+.trust-title{
+    font-size: 32px;
+    line-height: 45px;
+    padding-top: 50px;
+    text-align: center;
+    color: #fff;
+    font-weight: normal;
+}
+
+.trust-list{
+    padding-top: 45px;
+    overflow: hidden;
+}
+.trust-item{
+    text-align: center;
+    float: left;
+}
+.trust-item1{
+    margin-left: 110px;
+}
+.trust-item2{
+    margin-left: 234px;
+}
+.trust-item3{
+    margin-left: 241px;
+}
+.trust-item p{
+    padding-top: 16px;
+    line-height: 23px;
+    font-size: 16px;
+    color: #fff;
+}
+.trust-icon{
+    width: 74px;
+    height: 63px;
+    display: block;
+    margin: 0 auto;
+}
+.contact{
+    padding-top: 40px;
+    height: 196px;
+    overflow: hidden;
+}
+.contact-box{
+    float: left;
+}
+.qrcode{
+    float: right;
+    margin-right: 100px;
+    text-align: center;
+    font-size: 0;
+}
+.qrcode p{
+    padding-bottom: 3px;
+    line-height: 28px;
+    font-size: 20px;
+    color: #434a54;
+    font-weight: normal;
+}
+.qrcode img{
+    width: 125px;
+    height: 125px;
+}
+.tel-box{
+    color: #434a54;
+    line-height: 28px;
+    font-size: 20px;
+}
+.tel-box span{
+    font-weight: bold;
+}
+.contact-links{
+    line-height: 28px;
+    font-size: 0;
+    padding: 10px 0;
+}
+.contact-links a{
+    font-size: 20px;
+    color: #aab2bd;
+    margin-right: 20px;
+    font-weight: normal;
+}
+.contact-links a:hover{
+    color: #434a54;
+}
+.tip{
+    padding-bottom: 10px;
+    line-height: 20px;
+    font-size: 14px;
+    color: #696e76;
+}
+.copyright{
+    border-top: 1px solid #bfc6cc;
+    padding-top: 25px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 25px;
+    color: #aab2bd;
+    padding-bottom: 90px;
+}
+.layer{
+    width: 100%;
+    min-width: 1000px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 60px;
+    background: #333333;
+}
+.total{
+    line-height: 60px;
+    float: left;
+    font-size: 24px;
+    color: #fff;
+}
+.total span{
+    color: #fe7437;
+}
+.total em{
+    font-style: normal;
+    font-size: 34px;
+    color: #fe7437;
+}
+.layer .reg-box{
+    float: right;
+    margin-top: 8px;
+    margin-right: 40px;
+    width: 200px;
+}
+.layer .reg-box .btn{
+    height: 44px;
+}
+.transparent-mask{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 1000px;
+    -moz-user-select: none; /*火狐*/
+    -webkit-user-select: none; /*webkit浏览器*/
+    -ms-user-select: none; /*IE10*/
+    -khtml-user-select: none; /*早期浏览器*/
+    user-select: none;
+    display: none;
+}
+.transparent-mask .loading{
+    background: #000;
+    background: rgba(0, 0, 0, 0.7);
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    border-radius: 5px;
+    position: absolute;
+    left: 50%;
+    top: 200px;
+    margin-left: -50px;
+}
+.transparent-mask .loading img{
+    width: 50px;
+    height: 50px;
+    padding-top: 23px;
+}
+.weui_toast{
+    background: #282828;
+}
+
+.voice-btn{
+    box-sizing: border-box;
+    height: 100%;
+    font-size: 14px;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    vertical-align: middle;
+    color: #4a85d3;
+}
+.voice-btn:active{
+    color: #4a85d3;
+}

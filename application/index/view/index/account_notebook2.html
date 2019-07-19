@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>About - Wellness Website Template</title>
+		<link rel="stylesheet" href="_INDEX_CSS_/style.css" type="text/css" />
+		<!--[if IE 6]>
+			<link rel="stylesheet" href="_INDEX_CSS_/ie6.css" type="text/css" />
+		<![endif]-->
+		<script type="text/javascript" src="_INDEX_JQ_/jquery-2.1.3.min.js"></script>
+		<script type="text/javascript" src="_INDEX_JQ_/bootstrap.js"></script>
+		<script type="text/javascript" src="_INDEX_JQ_/plug-in.js"></script>
+		<link rel="stylesheet" type="text/css" href="_INDEX_CSS_/bootstrap.css">
+
+		<style type="text/css">
+			.body .content div.figure div{
+				padding: unset;
+			}
+			.body .content div.figure{
+				margin-bottom: 50px;
+				height: auto;
+				background: none;
+				width: 750px;
+			}
+			.page{
+				height: 100vh;
+			}
+			.title {
+				font-size: 24px;
+				font-weight: bold;
+				color: #666666;
+				font-family: "microsoft YaHei";
+				height: 36px;
+				line-height: 36px;
+				margin-left: 80px;
+				margin-bottom: 10px;
+				padding: 0 30px 20px 0;
+			}
+			.button {
+				display: block;
+				height: 32px;
+				width: 100px;
+				border: 1px solid #999999;
+				border-radius: 3px;
+				text-align: center;
+				line-height: 30px;
+				background: #cca666;
+				color: white;
+			}
+			.navigation{
+				height: 35px;
+				line-height: 35px;
+				font-size: 12px;
+				font-weight: bold;
+				color: #646987;
+				background-color: #e3e8ee;
+				padding: 10px 30px;
+				text-align: left;
+			}
+			.navigation div{
+                text-align:center;
+                display: inline-block;
+			}
+            .navigation2 div{
+                text-align:center;
+                display: inline-block;
+            }
+			.navigation3 div{
+				text-align:center;
+				display: inline-block;
+			}
+			.item{
+				position: fixed;
+				top: 25%;
+				left: 38%;
+				z-index: 1;
+				display: none;
+				padding: 20px 0px 0 58px;
+				border-radius: 10px;
+				width: 400px;
+				background: #f1f7dd;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="background">
+			<div id="bg">background</div>
+			<div class="page">
+				<div class="sidebar">
+					<div id="logo">
+						<a href="index.html"><img src="_INDEX_IMG_/logo.gif" alt=""/></a>
+					</div>
+					<ul style="border-style: none;">
+						<li><a href="index.html">个人中心</a></li>
+						<li class="selected"><a href="">收入支出管理</a></li>
+						<li><a href="friends.html">好友转账</a></li>
+						<li><a href="financial_recommend.html">理财推荐</a></li>
+						<li><a href="logout">注销</a></li>
+					</ul>
+					<div class="connect">
+						<a href="#" id="qq" class="qq" data-toggle="tooltip" data-placement="bottom" title="QQ:377157254">qq</a>
+						<a href="#" id="wechat" class="wechat" data-toggle="tooltip" data-placement="bottom" title="wechat:happiness">wechat</a>
+						<a href="#" id="webo" class="webo" data-toggle="tooltip" data-placement="bottom" title="webo：Jim_kk">webo</a>
+					</div>
+				</div>
+				<div class="body">
+					<div class="content">
+						<div class="figure">
+							<div class="title" style="display: inline-block;">
+								<a href="account_notebook.html">支出列表</a>
+							</div>
+							<div class="title" style="margin-left:30%;display: inline-block;text-decoration: none">收入列表</div>
+							<div style="display: inline-block;margin-left: 30%">
+								<button class="button" id="add_incomeNote">添加收入记录</button>
+							</div>
+							<div class="navigation">
+								<div style="width: 8%">序号</div>
+								<div style="width: 14%">类型</div>
+								<div style="width: 26%">描述</div>
+								<div style="width: 14%">金额</div>
+								<div style="width: 23%">日期</div>
+								<!--<div style="width: 10%">操作</div>-->
+							</div>
+                            {volist name="income_data" id="ic" key ="i" empty="暂无数据记录"}
+                            <div class="navigation2">
+                                <div style="width: 8%">{$i}</div>
+                                <div style="width: 14%">{$ic.type}</div>
+                                <div style="width: 26%">{$ic.description}</div>
+                                <div style="width: 14%">{$ic.account}</div>
+                                <div style="width: 23%">{$ic.date}</div>
+								<!--<div style="width: 10%">-->
+									<!--<button  style="background: red;color: white;border:none;border-radius: 3px" onclick="delete_note('{$ic.iid}');">删除</button>-->
+								<!--</div>-->
+                            </div>
+							{/volist}
+                            <div style="text-align: center">{$income_data->render()}</div>
+						</div>
+
+						<div class="figure" id="">
+							<div class="title">剩余金额：{$account}.00</div>
+						</div>
+					</div>
+					<div class="footer">
+						<ul>
+							<li class="first"><a href="index.html">个人中心</a></li>
+							<li><a href="">记账笔记本</a></li>
+							<li><a href="friends.html">好友转账</a></li>
+							<li><a href="financial_recommend.html">理财推荐</a></li>
+						</ul>
+						<p>© 2018 招财钱包 | 个人团队有限公司 广东是广州市从化区广从南路5号</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="income_item" class="item" >
+			<div style="font-weight: bold;font-size: 20px;margin-left:30% ;margin-bottom: 25px">
+				添加收入记录
+			</div>
+			<div style="margin-top: 10px;">
+				<span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类型：</span>
+				<select id="in_type" name="in_type" style="width: 214px;height: 38px;">
+					<option value="理财">理财</option>
+					<option value="兼职">兼职</option>
+					<option value="工资">工资</option>
+					<option value="其他">其他</option>
+				</select>
+				&nbsp;&nbsp;<div style="margin-left: 25%"><span id="in_type_tips" style="display: none;color: red">收入类型不能为空！</span></div>
+			</div>
+			<div style="margin-top: 10px;">
+				<span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;描述：</span>
+				<input id="in_description" name="in_description" placeholder="请输入收入描述" type="text" style="width: 200px;height: 28px;">
+				&nbsp;&nbsp;<div style="margin-left: 25%"><span id="in_description_tips" style="display: none;color: red">收入描述不能为空！</span></div>
+			</div>
+			<div style="margin-top: 10px;">
+				<span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;金额：</span>
+				<input id="in_account" name="in_account" placeholder="请输入收入金额" type="text" style="width: 200px;height: 28px;">
+				&nbsp;&nbsp;<div style="margin-left: 25%"><span id="in_account_tips" style="display: none;color: red">收入金额不能为空！</span></div>
+			</div>
+			<div style="margin-top: 10px;">
+				<span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日期：</span>
+				<input id="in_date" name="in_date" placeholder="请选择收入日期" type="date" style="width: 200px;height: 28px;">
+				&nbsp;&nbsp;<div style="margin-left: 25%"><span id="in_date_tips" style="display: none;color: red">收入日期不能为空！</span></div>
+			</div>
+			<div style="margin-top: 10px">
+				<div class="" style="margin-top: 25px;margin-left: 30%;margin-bottom: 30px">
+					<button id="incomenote_button" class="button">确认添加</button>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script>
+        //点击删除收入记录按钮触发事件
+        function delete_note(iid){
+            $.Pop('确定删除该收入记录吗？','confirm',function()
+            {
+                $.ajax({
+                    url:"delete_incomeNote",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        iid:iid ,
+                    },success:function (data) {
+                        if (data.status == "ok") {
+                            $.Pop('成功删除该收入记录！','alert',function(){
+                                window.location.href ="/index/Index/account_notebook2"
+                            });
+                        }else {
+                            $.Pop('删除失败！',{Close:false});
+                        }
+                    }
+                });
+            })
+        }
+
+        $(function () { $("[data-toggle='tooltip']").tooltip(); });
+        $(function() {
+            $(document).bind("click", function (e) {
+                if ($(e.target).closest("#income_item").length == 0) {
+                    //点击id为expend_item之外且id不是不是open，则触发
+                    document.getElementById("income_item").style.display = "none";
+                }
+            })
+        });
+        $('#add_incomeNote').on('click',function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            document.getElementById("income_item").style.display = "block";
+        })
+
+
+        //确认添加收入信息按钮
+        $('#incomenote_button').on('click',function (e){
+            e.preventDefault();
+            e.stopPropagation();
+            if( $('#in_type').val() != "" && $('#in_description').val() != "" && $('#in_account').val() != "" && $('#in_date').val() != "" ){
+                var in_type = $('#in_type').val();
+                var in_description = $('#in_description').val();
+                var in_account = $('#in_account').val();
+                var in_date = $('#in_date').val();
+
+                $.ajax({
+                    type:"POST",
+                    url:"add_incomeNote",
+                    dataType:"json",
+                    data:{
+                        type:in_type,
+                        description:in_description,
+                        account:in_account,
+                        date:in_date,
+                    },
+                    success:function (data)
+                    {
+                        if(data.status == "ok"){
+                            window.location.href ="/index/Index/account_notebook2"
+                            $.Pop('添加成功！',{Close:false});
+                        }else {
+                            $.Pop('添加失败！',{Close:false});
+                        }
+                    }
+                })
+            }else {
+                if($('#in_type').val() == ""){
+                    document.getElementById("in_type_tips").style.display = "inline-block";
+                }else if($('#in_description').val() == ""){
+                    document.getElementById("in_description_tips").style.display = "inline-block";
+                }else if($('#in_account').val() == ""){
+                    document.getElementById("in_account_tips").style.display = "inline-block";
+                }else if($('#in_date').val() == ""){
+                    document.getElementById("in_date_tips").style.display = "inline-block";
+                }else {
+                    return true;
+                }
+            }
+        });
+	</script>
+</html>  

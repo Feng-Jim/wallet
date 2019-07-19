@@ -1,0 +1,25 @@
+/* Website template by # */
+/*------------------------- Layout styles ------------------------*/ 
+#bg{
+	left:-440px;
+	height:1520px;
+}
+
+/*-------------------------	Sidebar --------------------------*/
+.sidebar div.connect a.facebook{
+	margin:17px 0 0 18px;
+}
+.body .content ul,.body .content div.gallery div{
+	height:1%;
+}
+.body .content div#blog ul.paging{
+	margin:37px 0 0 10px;
+}
+.body .content div.gallery div ul li{
+	width:188px;
+}
+
+/*------------------------- Body Footer --------------------------*/
+.body .footer p{
+	margin:0 15px 0 0;
+}

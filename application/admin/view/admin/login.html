@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="_INDEX_JQ_/jquery-3.0.0.js"></script>
+<style type="text/css">
+    body{
+        background: url("_ADMIN_IMG_/login.jpg") no-repeat;
+        background-size: 100%;
+        height: 100%;
+        width: 98%;
+    }
+
+    .index_LoginBox{
+        float: right;
+        margin: 100px 160px 0 0;
+        height: 320px;
+        width: 380px;
+        border-radius: 10px;
+        background: white;
+        opacity:0.9;
+    }
+
+    .loginButton{
+        background: darkturquoise;
+        font-size: 20px;
+        color: white;
+        width: 200px;
+        border-radius: 10px;
+        height: 30px;
+        border: none;
+    }
+</style>
+<body>
+<div>
+    <div class="index_LoginBox" >
+        <div style="width:380px;height: 40px;margin-top: 20px" align="center">
+            <span style="color: #999999;font-size: 25px;">账号登录</span>
+        </div>
+        <form id="login_form" method="post" action="{:url('Admin/login_check')}">
+            <div style="margin-left:20px " align="left">
+                <div>
+                    <span style="font-size: 20px">&nbsp;账&nbsp;号&nbsp;:&nbsp;</span>
+                    <input name="username" placeholder="请输入管理员账号" type="text" style="width: 200px;height: 28px;">
+                </div>
+                <div style="margin-top: 13px">
+                    <span style="font-size: 20px">&nbsp;密&nbsp;码&nbsp;:&nbsp;</span>
+                    <input name="password" placeholder="请输入管理员密码" type="password" style="width: 200px;height: 28px;">
+                </div>
+                <div style="margin-top: 13px">
+                    <div>
+                        <span style="font-size: 20px">验证码：</span>
+                        <input name="verify" type="text" placeholder="请输入验证码" style="width: 100px;height: 28px;">
+                    </div>
+                    <div style="margin-left: 25px;margin-top: 13px">
+                        <img style="width: 150px;height: 60px" id="verify_img" src="{:captcha_src()}" alt="验证码" onclick="refreshVerify()">
+                        <a href="javascript:refreshVerify()">点击刷新</a>
+                    </div>
+                </div>
+                <div class="" align="left" style="margin-left: 60px;margin-top: 13px">
+                    <input id="login_input" class="loginButton" type="submit" value="登录">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+<script>
+    function refreshVerify() {
+        var ts = Date.parse( new Date() )/1000;
+        var img = document.getElementById('verify_img');
+        img.src = "/captcha?id="+ts;
+    }
+</script>
+</html>

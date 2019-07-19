@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>个人中心</title>
+		<link rel="stylesheet" href="_INDEX_CSS_/style.css" type="text/css" />
+		<!--[if IE 6]>
+			<link rel="stylesheet" href="_INDEX_CSS_/ie6.css" type="text/css" />
+		<![endif]-->
+
+		<script type="text/javascript" src="_INDEX_JQ_/jquery-2.1.3.min.js"></script>
+		<script type="text/javascript" src="_INDEX_JQ_/bootstrap.js"></script>
+		<script type="text/javascript" src="_INDEX_JQ_/city-data.js"></script>
+		<script type="text/javascript" src="_INDEX_JQ_/hzw-city-picker.min.js"></script>
+		<script type="text/javascript" src="_INDEX_JQ_/verify.js"></script>
+		<script type="text/javascript" src="_INDEX_JQ_/plug-in.js"></script>
+		<link rel="stylesheet" type="text/css" href="_INDEX_CSS_/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="_INDEX_CSS_/hzw-city-picker.css">
+
+		<style type="text/css">
+			.body .content div.figure div{
+				padding: unset;
+				margin: 5px 0px 0px 0px;
+				height: 50px;
+			}
+			.body .content div.figure{
+				height: 200px;
+			}
+			.page{
+				height: 100vh;
+			}
+			.title {
+				font-size: 24px;
+				font-weight: bold;
+				color: #666666;
+				font-family: "microsoft YaHei";
+				height: 36px;
+				line-height: 36px;
+				margin-left: 80px;
+				margin-bottom: 10px;
+				padding: 0 30px 20px 0;
+			}
+			.button {
+				display: block;
+				height: 32px;
+				width: 100px;
+				border: 1px solid #999999;
+				border-radius: 3px;
+				text-align: center;
+				line-height: 30px;
+				background: #cca666;
+				color: white;
+			}
+			.modify_data_item{
+				position: fixed;
+				top: 25%;
+				left: 38%;
+				z-index: 1;
+				display: none;
+				padding: 20px 0px 0 58px;
+				border-radius: 10px;
+				width: 400px;
+				background: #f1f7dd;
+			}
+			.modify_password_item{
+				position: fixed;
+				top: 25%;
+				left: 38%;
+				z-index: 2;
+				display: none;
+				padding: 20px 0 0 40px;
+				border-radius: 10px;
+				width: 400px;
+				background: #f1f7dd;
+			}
+			.modify_head_url_item{
+				position: fixed;
+				top: 25%;
+				left: 38%;
+				z-index: 2;
+				display: none;
+				padding: 20px 0 0 40px;
+				border-radius: 10px;
+				width: 400px;
+				background: #f1f7dd;
+			}
+			.add_card_item{
+				position: fixed;
+				top: 25%;
+				left: 38%;
+				z-index: 3;
+				display: none;
+				padding: 20px 25px 0 40px;
+				border-radius: 10px;
+				width: 400px;
+				background: #f1f7dd;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="background">
+			<div id="bg">background</div>
+			<div class="page">
+				<div class="sidebar">
+					<div id="logo">
+						<!--<a href="index.html"><img src="_INDEX_IMG_/logo.gif" /></a>-->
+						<a id="modify_head_url" href="index.html">{$url}</a>
+					</div>
+					<ul style="border-style: none;">
+						<li class="selected"><a href="index.html">个人中心</a></li>
+						<li><a href="account_notebook.html">记账笔记本</a></li>
+						<li><a href="friends.html">好友转账</a></li>
+						<li><a href="financial_recommend.html">理财推荐</a></li>
+						<li><a href="logout">注销</a></li>
+					</ul>
+					<div class="connect">
+						<a href="#" id="qq" class="qq" data-toggle="tooltip" data-placement="bottom" title="QQ:377157254">qq</a>
+						<a href="#" id="wechat" class="wechat" data-toggle="tooltip" data-placement="bottom" title="wechat:happiness">wechat</a>
+						<a href="#" id="webo" class="webo" data-toggle="tooltip" data-placement="bottom" title="webo：Jim_kk">webo</a>
+					</div>
+				</div>
+				<div class="body">
+					<div class="content">
+						<div class="figure">
+							<div class="title">个人信息</div>
+							<div>
+								<div>
+									<div style="width: 30%;display: inline-block">账号：{$username}</div>
+									<div style="width: 30%;display: inline-block">昵称：{$name}</div>
+									<div style="display: inline-block">邮箱：{$email}</div>
+								</div>
+								<div>
+									<div style="width: 30%;display: inline-block">电话：{$phone}</div>
+									<div style="width: 30%;display: inline-block">地区：{$region}</div>
+								</div>
+								<div>
+									<button class="button" style="display: inline-block" id="modify_data">修改信息</button>
+									<button class="button" style="display: inline-block" id="modify_password">修改密码</button>
+								</div>
+							</div>
+						</div>
+						<div class="figure" style="height:auto;margin-top: 30px;">
+							<div class="title">银行卡信息</div>
+							<div>
+								{volist name="card_data" id="vo" key ="i"}
+								<div>
+									<div style="width: 30%;display: inline-block">持卡人：{$vo.card_username}</div>
+									<div style="width: 30%;display: inline-block">开卡行：{$vo.card_bank}</div>
+									<div id="balance2" style="display: inline-block;width: 38%">
+										<div style="display: inline-block;width: 160px">余额：*****</div>
+										<button style="display:inline-block;width: 50px;" class="button" id="visible2">可见</button>
+									</div>
+									<div id="balance" value="1" style="display: none;width: 38%">
+										<div style="display: inline-block;width: 160px">余额：{$vo.card_balance}.00元</div>
+										<button  style="display: inline-block;width: 50px" class="button" id="visible">隐藏</button>
+									</div>
+								</div>
+								<div>
+									<div style="display: inline-block">账号：{$vo.card_number}</div>
+								</div>
+								{/volist}
+								<div>
+									<button class="button" id="add_card">添加银行卡</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!--<div>-->
+						<!--<div class="footer">-->
+							<!--<ul>-->
+								<!--<li class="first"><a href="">个人中心</a></li>-->
+								<!--<li><a href="account_notebook.html">记账笔记本</a></li>-->
+								<!--<li><a href="friends.html">好友转账</a></li>-->
+								<!--<li><a href="financial_recommend.html">理财推荐</a></li>-->
+							<!--</ul>-->
+							<!--<p>© 2018 招财钱包 | 个人团队有限公司 广东是广州市从化区广从南路5号</p>-->
+						<!--</div>-->
+					<!--</div>-->
+
+				</div>
+			</div>
+		</div>
+
+		<div id="modify_data_item" class="modify_data_item" >
+			<div style="font-weight: bold;font-size: 20px;margin-left:30% ;margin-bottom: 25px">
+				信息修改
+			</div>
+			<div style="margin-top: 10px;">
+				<span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昵称：</span>
+				<input id="name" name="name" value="{$name}" placeholder="请输入修改的昵称" type="text" style="width: 200px;height: 28px;">
+				&nbsp;&nbsp;<div style="margin-left: 25%"><span id="name_tips" style="display: none;color: red">昵称不能为空！</span></div>
+			</div>
+			<div style="margin-top: 10px;">
+				<span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱：</span>
+				<input id="email" name="email" value="{$email}" placeholder="请输入修改的邮箱" type="text" style="width: 200px;height: 28px;">
+				&nbsp;&nbsp;<div style="margin-left: 25%"><span id="email_tips" style="display: none;color: red">邮箱不能为空！</span><span id="email_tips2" style="display: none;color: red">请输入正确的邮箱！</span></div>
+			</div>
+			<div style="margin-top: 10px;">
+				<span style="font-size: 20px;color: #9095ab;">手机号码：</span>
+				<input id="phone" name="phone" value="{$phone}" placeholder="请输入修改的手机" type="text" style="width: 200px;height: 28px;">
+				&nbsp;&nbsp;<div style="margin-left: 25%"><span id="phone_tips" style="display: none;color: red">手机号码不能为空！</span><span id="phone_tips2" style="display: none;color: red">请输入正确的手机号！</span></div>
+			</div>
+			<div style="margin-top: 10px;">
+				<span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地区：</span>
+				<input id="cityChoice" name="region" value="{$region}" placeholder="请选择用户新所在地区" type="text" style="width: 200px;height: 28px;">
+				&nbsp;&nbsp;<div style="margin-left: 25%"><span id="cityChoice_tips" style="display: none;color: red">地区不能为空！</span></div>
+			</div>
+			<div style="margin-top: 10px">
+				<div class="" style="margin-top: 25px;margin-left: 30%;margin-bottom: 30px">
+					<button id="modifyData_button" class="button">确认修改</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="modify_password_item" id="modify_password_item">
+			<div style="font-weight: bold;font-size: 20px;margin-left:30% ;margin-bottom: 25px">
+				密码修改
+			</div>
+			<div>
+				<span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;原密码：</span>
+				<input id="password" name="password" placeholder="请输入原密码" type="password" style="width: 200px;height: 25px;">
+				<div style="margin-left: 30%;"><span id="password_tips" style="display: none ;color: red">请输入正确密码！</span></div>
+			</div>
+			<div style="margin-top: 28px">
+				<span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新密码：</span>
+				<input id="new_password" name="new_password" placeholder="请输入新密码" type="password" style="width: 200px;height: 25px;">
+			</div>
+			<div style="margin-top: 28px">
+				<span style="font-size: 20px;color: #9095ab;">确认新密码：</span>
+				<input id="new_password2" name="new_password2" placeholder="请再次输入新密码" type="password" style="width: 200px;height: 25px;">
+				<div style="margin-left: 30%;"><span id="password_tips2" style="display: none;color: red">请再次确认新密码！</span></div>
+			</div>
+			<div style="margin-top: 10px">
+				<div class="" style="margin-top: 25px;margin-left: 30%;margin-bottom: 30px">
+					<button id="modifyPassword_button" class="button">确认修改</button>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="add_card_item" class="add_card_item" >
+			<div style="font-weight: bold;font-size: 20px;margin-left:30% ;margin-bottom: 25px">
+				添加银行卡
+			</div>
+			<div style="margin-top: 10px;">
+				<span style="font-size: 18px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;开户行：</span>
+				<input id="card_bank" name="card_bank" placeholder="请输入开户行" type="text" style="width: 200px;height: 28px;">
+				&nbsp;&nbsp;<div style="margin-left: 25%"><span id="card_bank_tips" style="display: none;color: red">该项不能为空！</span></div>
+			</div>
+			<div style="margin-top: 10px;">
+				<span style="font-size: 18px;color: #9095ab;">持卡人姓名：</span>
+				<input id="card_username" name="card_username" placeholder="请输入持卡人姓名" type="text" style="width: 200px;height: 28px;">
+				&nbsp;&nbsp;<div style="margin-left: 25%"><span id="card_username_tips" style="display: none;color: red">该项不能为空！</span></div>
+			</div>
+			<div style="margin-top: 10px;">
+				<span style="font-size: 18px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;银行卡号：</span>
+				<input id="card_number" name="card_number" placeholder="请输入银行卡号" type="text" style="width: 200px;height: 28px;">
+				&nbsp;&nbsp;<div style="margin-left: 25%"><span id="card_number_tips" style="display: none;color: red">该项不能为空！</span><span id="card_number_tips2" style="display: none;color: red">请输入银行卡卡号！</span></div>
+			</div>
+			<div style="margin-top: 10px;">
+				<span style="font-size: 18px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;卡余额：</span>
+				<input id="card_balance" name="card_balance" placeholder="请输入银行卡余额" type="text" style="width: 200px;height: 28px;">
+				&nbsp;&nbsp;<div style="margin-left: 25%"><span id="card_balance_tips" style="display: none;color: red">该项不能为空！</span></div>
+			</div>
+			<div style="margin-top: 10px">
+				<div class="" style="margin-top: 25px;margin-left: 30%;margin-bottom: 30px">
+					<button id="add_card_button" class="button">确认添加</button>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="modify_head_url_item" id="modify_head_url_item">
+			<div style="font-weight: bold;font-size: 20px;margin-left:30% ;margin-bottom: 25px">
+				头像修改
+			</div>
+			<div style="margin-left: 25%;margin-bottom: 15px">
+				<span>默认头像如下：</span>
+			</div>
+			<div style="margin-left: 20%">
+				<img src="_INDEX_IMG_/logo.gif" />
+			</div>
+			<div style="margin-left: 25%;margin-bottom: 15px">
+				<span>新头像路径如下：</span>
+			</div>
+			<form action="/index/Index/modify_image_url" method="post" enctype="multipart/form-data">
+				<div style="margin-left: 15%;margin-bottom: 20px;margin-top:20px ">
+					<input name="file" accept="image/png,image/jpg,image/jpeg" value="新头像路径" type="file" placeholder="上传后缀名为.jpg/.jpeg/.png的图片文件">
+				</div>
+				<div style="margin-left: 30%">
+					<button id="modify_head_url_button" class="button" type="submit">确认修改</button>
+				</div>
+			</form>
+
+		</div>
+
+
+
+
+	</body>
+
+<script>
+    var cityPicker = new HzwCityPicker({
+        data: data,
+        target: 'cityChoice',
+        valType: 'k-v',
+        hideCityInput: {
+            name: 'city',
+            id: 'city'
+        },
+        hideProvinceInput: {
+            name: 'province',
+            id: 'province'
+        },
+    });
+    cityPicker.init();
+
+    $(function () { $("[data-toggle='tooltip']").tooltip(); });
+    $(function(){
+        $(document).bind("click",function(e){
+			if($(e.target).closest("#modify_data_item").length == 0 && $(e.target).closest("#hzw_city_picker").length == 0 && $(e.target).closest("#hzw_province_wrap li ul").length == 0){
+				//点击id为modify_data_item之外且id不是不是open，则触发
+				document.getElementById("modify_data_item").style.display = "none";
+                document.getElementById("modify_password").disabled = false;
+                document.getElementById("add_card").disabled = false;
+                document.getElementById("modify_head_url_button").disabled = false;
+			}
+
+            if($(e.target).closest("#modify_password_item").length == 0){
+                //点击id为modify_password_item之外且id不是不是open，则触发
+                document.getElementById("modify_password_item").style.display = "none";
+                document.getElementById("modify_data").disabled = false;
+                document.getElementById("add_card").disabled = false;
+                document.getElementById("modify_head_url_button").disabled = false;
+                $('#password').val("");
+                $('#new_password').val("");
+                $('#new_password2').val("");
+            }
+
+            if($(e.target).closest("#add_card_item").length == 0 ){
+                //点击id为modify_data_item之外且id不是不是open，则触发
+                document.getElementById("add_card_item").style.display = "none";
+                document.getElementById("modify_data").disabled = false;
+                document.getElementById("modify_password").disabled = false;
+                document.getElementById("modify_head_url_button").disabled = false;
+            }
+
+            if($(e.target).closest("#modify_head_url_item").length == 0 ){
+                //点击id为modify_data_item之外且id不是不是open，则触发
+                document.getElementById("modify_head_url_item").style.display = "none";
+                document.getElementById("modify_data").disabled = false;
+                document.getElementById("modify_password").disabled = false;
+                document.getElementById("add_card").disabled = false;
+            }
+
+        })
+    });
+
+    $('#modify_head_url').on('click',function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.getElementById("modify_head_url_item").style.display = "block";
+        document.getElementById("modify_password").disabled = "disabled";
+        document.getElementById("add_card").disabled = "disabled";
+        document.getElementById("modify_data").disabled = "disabled";
+    });
+
+	$('#modify_data').on('click',function (e) {
+	    e.preventDefault();
+	    e.stopPropagation();
+	    document.getElementById("modify_data_item").style.display = "block";
+        document.getElementById("modify_password").disabled = "disabled";
+        document.getElementById("add_card").disabled = "disabled";
+    });
+
+    $('#modify_password').on('click',function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.getElementById("modify_password_item").style.display = "block";
+        document.getElementById("modify_data").disabled = "disabled";
+        document.getElementById("add_card").disabled = "disabled";
+    });
+
+    //添加银行卡按钮
+    $('#add_card').on('click',function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.getElementById("add_card_item").style.display = "block";
+        document.getElementById("modify_data").disabled = "disabled";
+        document.getElementById("add_card").disabled = "disabled";
+    });
+
+
+
+    //确认修改信息按钮
+    $('#modifyData_button').on('click',function (e){
+        e.preventDefault();
+        e.stopPropagation();
+        if( $('#name').val() != "" && $('#email').val() != "" && $('#phone').val() != "" && $('#cityChoice').val() != "" ){
+            if( isPhone($('#phone').val()) == false ){
+                document.getElementById("phone_tips2").style.display = "inline-block";
+                $('#phone').focus();
+            }else if( isEmail($('#email').val()) == false ){
+                document.getElementById("email_tips2").style.display = "inline-block";
+                $('#email').focus();
+            }else {
+                var name = $('#name').val();
+                var email = $('#email').val();
+                var phone = $('#phone').val();
+                var cityChoice = $('#cityChoice').val();
+
+                $.ajax({
+                    type:"POST",
+                    url:"modify_data",
+                    dataType:"json",
+                    data:{
+                        name:name,
+                        email:email,
+                        phone:phone,
+                        region:cityChoice,
+                    },
+                    success:function (data)
+                    {
+                        if(data.status == "ok"){
+                            $('#name').focus();
+                            $.Pop('修改成功！修改的信息将会在下次登录显示！',{Close:false});
+                        }else {
+                            $.Pop('修改失败！',{Close:false});
+                        }
+                    }
+                })
+            }
+        }else {
+            if($('#name').val() == ""){
+                document.getElementById("name_tips").style.display = "inline-block";
+            }else if($('#email').val() == ""){
+                document.getElementById("email_tips").style.display = "inline-block";
+            }else if($('#phone').val() == ""){
+                document.getElementById("phone_tips").style.display = "inline-block";
+            }else if($('#cityChoice').val() == ""){
+                document.getElementById("cityChoice_tips").style.display = "inline-block";
+            }else {
+                return true;
+            }
+		}
+    });
+
+    $('#name').focus(function () {
+        document.getElementById("name_tips").style.display = "none";
+    });
+    $('#email').focus(function () {
+        document.getElementById("email_tips").style.display = "none";
+    });
+    $('#phone').focus(function () {
+        document.getElementById("phone_tips").style.display = "none";
+    });
+    $('#cityChoice').focus(function () {
+        document.getElementById("cityChoice_tips").style.display = "none";
+    });
+
+    //确认添加银行卡按钮
+    $('#add_card_button').on('click',function (e){
+        e.preventDefault();
+        e.stopPropagation();
+        if( $('#card_bank').val() != "" && $('#card_username').val() != "" && $('#card_number').val() != "" && $('#card_balance').val() != "" ){
+            if( luhnCheck($('#card_number').val()) == false ){
+                document.getElementById("card_number_tips2").style.display = "inline-block";
+                $('#card_number').focus();
+            }else {
+                var card_bank = $('#card_bank').val();
+                var card_username = $('#card_username').val();
+                var card_number = $('#card_number').val();
+                var card_balance = parseFloat($('#card_balance').val());
+                $.ajax({
+                    type:"POST",
+                    url:"add_card",
+                    dataType:"json",
+                    data:{
+                        card_bank:card_bank,
+                        card_username:card_username,
+                        card_number:card_number,
+                        card_balance:card_balance,
+                    },
+                    success:function (data)
+                    {
+                        if(data.status == "ok"){
+                            $('#name').focus();
+                            $.Pop('修改成功！修改的信息将会在下次登录显示！',{Close:false});
+                        }else {
+                            $.Pop('修改失败！',{Close:false});
+                        }
+                    }
+                })
+            }
+        }else {
+            if($('#card_bank').val() == ""){
+                document.getElementById("card_bank_tips").style.display = "inline-block";
+            }else if($('#card_username').val() == ""){
+                document.getElementById("card_username_tips").style.display = "inline-block";
+            }else if($('#card_number').val() == ""){
+                document.getElementById("card_number_tips").style.display = "inline-block";
+            }else if($('#card_balance').val() == ""){
+                document.getElementById("card_balance_tips").style.display = "inline-block";
+            }else {
+                return true;
+            }
+		}
+    });
+    $('#card_bank').focus(function () {
+        document.getElementById("card_bank_tips").style.display = "none";
+    });
+    $('#card_username').focus(function () {
+        document.getElementById("card_username_tips").style.display = "none";
+    });
+    $('#card_number').focus(function () {
+        document.getElementById("card_number_tips").style.display = "none";
+    });
+    $('#card_balance').focus(function () {
+        document.getElementById("card_balance_tips").style.display = "none";
+    });
+
+    //确认修改密码按钮
+    $('#modifyPassword_button').on('click',function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var password = $('#password').val();
+        var new_password = $('#new_password').val();
+        var new_password2 = $('#new_password2').val();
+        if(password != "" && new_password != "" && new_password2 != ""){
+            if( new_password == new_password2 ){
+                $.ajax({
+                    type:"POST",
+                    url:"modify_password",
+                    dataType:"json",
+                    data:{
+                        password:password ,
+                        new_password:new_password,
+                        new_password2:new_password2
+                    },
+                    success:function (data)
+                    {
+                        if (data.status == "ok"){
+                            $.Pop('密码修改成功！',{Close:false});
+                            $('#password').val('');
+                            $('#new_password').val('');
+                            $('#new_password2').val('');
+                            $('#password').focus();
+                        }else if(data.status == "fail"){
+                            $.Pop('修改失败！',{Close:false});
+                        }else {
+                            document.getElementById("password_tips").style.display = "block";
+                            $('#password').val('');
+                        }
+                    }
+                })
+            }else {
+                document.getElementById("password_tips2").style.display = "block";
+                $('#new_password2').val('');
+            }
+        }else {
+            $.Pop('所有文本框不能为空！',{Close:false});
+        }
+    });
+
+    $('#password').focus(function () {
+        document.getElementById("password_tips").style.display = "none";
+    });
+    $('#new_password2').focus(function () {
+        document.getElementById("password_tips2").style.display = "none";
+    });
+
+    $('#visible2').on('click',function (e) {
+        document.getElementById("balance2").style.display = "none";
+        document.getElementById("balance").style.display = "inline-block";
+    })
+    $('#visible').on('click',function (e) {
+        document.getElementById("balance").style.display = "none";
+        document.getElementById("balance2").style.display = "inline-block";
+    })
+
+</script>
+</html>  

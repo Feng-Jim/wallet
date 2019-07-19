@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>左边菜单栏</title>
+
+    <script type="text/javascript" src="_ADMIN_JQ_/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="_ADMIN_JQ_/plug-in.js"></script>
+    <link rel="stylesheet" type="text/css" href="_ADMIN_CSS_/bootstrap.min.css" />
+    <style type="text/css">
+        .logoDiv {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            height: 60px;
+            background-color: #354457;
+            font-size: 17px;
+            color: #fff;
+            vertical-align: bottom;
+        }
+        .personInfor {
+            padding: 10px 5px 10px;
+            margin: 0 5px;
+            color: #b3bcc5;
+            border-bottom: 1px solid #354457;
+            overflow-x: hidden;
+            padding-left: 20px;
+        }
+        .meun-title {
+            margin-left: 10px;
+            color: #828e9a;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .meun-item {
+            font-size: 16px;
+            margin-left: 18px;
+            line-height: 40px;
+            height: 40px;
+            color: #aab1b7;
+            cursor: pointer;
+        }
+        .meun-item:hover{
+            color: white;
+        }
+        </style>
+</head>
+<body>
+<div>
+    <div class="logoDiv">
+        <div style="margin-left: 45px">
+            <img style="border-radius: 10px" src="_ADMIN_IMG_/zhao.jpg" width="80px" height="80px">
+        </div>
+    </div>
+    <div class="personInfor">
+        <div style="color: #b3bcc5;font-size: 15px;margin-left: -5px;margin-top: 10px;margin-bottom: 10px">
+            <div>
+                <span>
+                    管理员ID：{$aid}
+                </span><br>
+                <span>
+                    账号：{$username}
+                </span>
+            </div>
+            <div style="margin-top: 10px">
+                <a style="color: #aab1b7;" href="{:url('Admin/logout')}">退出账号</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="meun-title">
+        网站数据管理
+    </div>
+    <div class="one">
+        <div class="meun-item " >
+            <a style="text-decoration: none;color: #aab1b7;" href="{:url('Admin/siteData')}">数据统计信息</a>
+        </div>
+    </div>
+
+    <div class="meun-title">
+        个人信息管理
+    </div>
+    <div class="two">
+        <div class="meun-item two">
+            <a style="text-decoration: none;color: #aab1b7;" href="{:url('Admin/passModify')}">密码修改</a>
+        </div>
+    </div>
+
+    <div class="meun-title">
+        用户信息管理
+    </div>
+    <div class="three">
+        <div class="meun-item three">
+            <a style="text-decoration: none;color: #aab1b7;" href="{:url('Admin/userAdd')}">添加用户</a>
+        </div>
+    </div>
+    <div class="four">
+        <div class="meun-item four">
+            <a style="text-decoration: none;color: #aab1b7;" href="{:url('Admin/userSearch')}">修改删除用户</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

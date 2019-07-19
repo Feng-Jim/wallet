@@ -1,0 +1,333 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>web招财钱包</title>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <!--iOS中隐藏Safari浏览器的UI:Start-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--iOS中隐藏Safari浏览器的UI:End-->
+    <!--iOS Safari对页面数字禁用拨号功能:Start-->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <!--iOS Safari对页面数字禁用拨号功能:End-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="Ucredit">
+    <meta http-equiv="Cache-Control" content="no-transform">
+
+    <link rel="stylesheet" href="static/css/weui.min.css">
+    <link rel="stylesheet" href="static/css/jquery-weui.min.css">
+    <link rel="stylesheet" href="static/css/special.css">
+    <link rel="stylesheet" href="static/css/lp-pc.css">
+
+
+    <script type="text/javascript" src="_INDEX_JQ_/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="_INDEX_JQ_/plug-in.js"></script>
+    <script type="text/javascript" src="_INDEX_JQ_/city-data.js"></script>
+    <script type="text/javascript" src="_INDEX_JQ_/hzw-city-picker.min.js"></script>
+    <script type="text/javascript" src="_INDEX_JQ_/verify.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="_INDEX_CSS_/hzw-city-picker.css">
+
+    <style type="text/css">
+        .user_register_item{
+            position: fixed;
+            top: 10%;
+            left:25%;
+            z-index: 5;
+            display: none;
+            padding-top: 70px;
+            background: white;
+            border-radius: 10px;
+            width: 600px;
+            height: 450px;
+        }
+        .register_button{
+            background: linear-gradient(to right, #fe9437 25%, #fe7437 50%);
+            font-size: 20px;
+            color: white;
+            width: 200px;
+            border-radius: 8px;
+            height: 35px;
+            border: none;
+        }
+    </style>
+</head>
+
+<body >
+<div>
+    <form method="post" id="userAdd_form">
+        <div id="user_register_item" class="user_register_item" >
+            <div style="margin-left: 120px">
+                <span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;账号：</span>
+                <input id="r_username" name="username" placeholder="请输入注册的账号" type="text" style="width: 200px;height: 28px;">
+                &nbsp;&nbsp;<span id="username_tips" style="display: none;color: red">账号不能为空！</span>
+            </div>
+            <div style="margin-top: 15px;margin-left: 120px">
+                <span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码：</span>
+                <input id="r_password" name="password" placeholder="请输入注册的密码" type="password" style="width: 200px;height: 28px;">
+                &nbsp;&nbsp;<span id="password_tips" style="display: none;color: red">密码不能为空！</span>
+            </div>
+            <div style="margin-top: 15px;margin-left: 120px">
+                <span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;昵称：</span>
+                <input id="name" name="name" placeholder="请输入注册的昵称" type="text" style="width: 200px;height: 28px;">
+                &nbsp;&nbsp;<span id="name_tips" style="display: none;color: red">昵称不能为空！</span>
+            </div>
+            <div style="margin-top: 15px;margin-left: 120px">
+                <span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱：</span>
+                <input id="email" name="email" placeholder="请输入注册的邮箱" type="text" style="width: 200px;height: 28px;">
+                &nbsp;&nbsp;<span id="email_tips" style="display: none;color: red">邮箱不能为空！</span><span id="email_tips2" style="display: none;color: red">请输入正确的邮箱！</span>
+            </div>
+            <div style="margin-top: 15px;margin-left: 120px">
+                <span style="font-size: 20px;color: #9095ab;">手机号码：</span>
+                <input id="phone" name="phone" placeholder="请输入注册的手机" type="text" style="width: 200px;height: 28px;">
+                &nbsp;&nbsp;<span id="phone_tips" style="display: none;color: red">手机号码不能为空！</span><span id="phone_tips2" style="display: none;color: red">请输入正确的手机号！</span>
+            </div>
+            <div style="margin-top: 15px;margin-left: 120px">
+                <span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地区：</span>
+                <input id="cityChoice" name="region" placeholder="请选择用户所在地区" type="text" style="width: 200px;height: 28px;">
+                &nbsp;&nbsp;<span id="cityChoice_tips" style="display: none;color: red">地区不能为空！</span>
+            </div>
+            <div style="margin-top: 10px">
+                <div class="" align="center" style="margin-top: 28px">
+                    <button id="register_button" class="register_button" type="submit">注册</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+    <div class="header">
+        <div class="header-img"><img src="static/picture/banner1@2x.png" alt=""></div>
+        <div class="container banner-box">
+            <div class="logo"><img src="_INDEX_IMG_/zhao.jpg" style="height: 60px;width: 80px;border-radius: 15px" alt=""></div>
+            <div class="slogon">
+                <div class="slogon-title">银行卡资金随时随地快速管理</div>
+            </div>
+            <div class="form">
+                <div class="form-title">
+                    <strong><img src="static/picture/ic_yellow_left@2x.png" alt="" class="from-title-icon-left">随时随地快速管理<img src="static/picture/ic_yellow_right@2x.png" alt="" class="from-title-icon-right"></strong>
+                </div>
+                <div class="item">
+                    <input type="text" class="text" name="username" id="username" placeholder="请输入账号" autocomplete="off">
+                </div>
+                <div class="item">
+                    <input type="password" class="text" name="password" id="password" placeholder="请输入密码">
+                </div>
+                <div class="item">
+                    <input type="text" class="text" id="verify" name="verify" placeholder="请输入验证码">
+                </div>
+                <div style="margin-left: 0px;margin-top: 13px">
+                    <img style="width: 150px;height: 60px" id="verify_img" src="{:captcha_src()}" alt="验证码" onclick="refreshVerify()">
+                    <a href="javascript:refreshVerify()" style="font-size: 14px;color: #49afcd">点击刷新</a>
+                </div>
+                <div class="error-msg">错误信息</div>
+                <div style="height: 15px"><a href="" id="register" style="font-size: 14px;color: #49afcd">您还没有注册账号？</a></div>
+                <div class="reg-box">
+                    <button id="login_button" class="btn">登录</button>
+                </div>
+            </div>
+
+        </div>
+
+        <img src="static/picture/ic_triangle@2x.png" alt="" class="arrow">
+    </div>
+    <div class="steps">
+        <div class="container">
+            <h2 class="step-title">3大功能让你快速管理好自己的钱包！</h2>
+            <img src="static/picture/ic_5@2x.png" alt="" class="step-icon">
+            <div class="step-desc">
+                <p class="step-step1">好友转账</p>
+                <p class="step-step2">快速记账</p>
+                <p class="step-step3">理财推荐</p>
+            </div>
+            <img src="static/picture/oval_1@2x.png" alt="" class="steps-half-circle">
+            <img src="static/picture/oval_2@2x.png" alt="" class="steps-full-circle">
+        </div>
+    </div>
+    <div class="container contact">
+        <div class="contact-box">
+            <div class="tel-box">咨询电话：<span class="tel">400-666-9999</span></div>
+            <div class="contact-links">
+                <!-- <a href="https://www.renrendai.com/pc/about/rrd/contact" target="_blank">联系我们</a>
+                <a href="https://www.renrendai.com/pc/about/rrd" target="_blank">公司介绍</a>
+                <a href="http://bbs.renrendai.com/" target="_blank">人人贷论坛</a> -->
+            </div>
+            <!-- <p class="tip">数据来源于人人贷内部统计，截止至2018年05月31日</p> -->
+            <p class="tip">具体借款情况以实际审批为准，请按需合理借款</p>
+            <p class="tip">最低综合年化费率9.36%</p>
+        </div>
+        <div class="qrcode">
+            <p>扫码申请借款</p>
+            <img src="static/picture/code_b@2x.png" alt="">
+        </div>
+    </div>
+    <div class="container copyright">
+        <p> © 2018 招财钱包 |  个人团队有限公司  广东是广州市从化区广从南路5号 </p>
+    </div>
+    <div class="transparent-mask">
+        <div class="loading"><img src="static/picture/loading.gif" alt=""></div>
+    </div>
+
+</body>
+
+<script>
+    $(function(){
+        $(document).bind("click",function(e){
+            if($(e.target).closest("#userAdd_form").length == 0 && $(e.target).closest("#hzw_city_picker").length == 0){
+                //点击id为userAdd_form之外且id不是不是open，则触发
+                document.getElementById("user_register_item").style.display = "none";
+            }
+        })
+    });
+
+    var cityPicker = new HzwCityPicker({
+        data: data,
+        target: 'cityChoice',
+        valType: 'k-v',
+        hideCityInput: {
+            name: 'city',
+            id: 'city'
+        },
+        hideProvinceInput: {
+            name: 'province',
+            id: 'province'
+        },
+    });
+    cityPicker.init();
+
+    function refreshVerify() {
+        var ts = Date.parse( new Date() )/1000;
+        var img = document.getElementById('verify_img');
+        img.src = "/captcha?id="+ts;
+    }
+
+    $("#login_button").on('click',function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var username = $('#username').val();
+        var password = $('#password').val();
+        var verify = $('#verify').val();
+        if( username != "" && password != "" && verify != ""){
+            $.ajax({
+                type:"POST",
+                url:"loginCheck",
+                dataType:"json",
+                data:{
+                    username:username,
+                    password:password,
+                    verify:verify,
+                },success:function (data) {
+                    if(data.status == "ok" ){
+                        window.location.href ="/index/Index/index"
+                    }else if(data.status == "fail"){
+                        $.Pop('用户名或密码错误！',{Close:false});
+                    }else if(data.status == "verify_error"){
+                        $.Pop('验证码错误！',{Close:false});
+                    }else{
+                        $.Pop('用户名或密码错误！',{Close:false});
+                    }
+                }
+
+            })
+        }
+    });
+
+    $('#register').on('click',function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        document.getElementById("user_register_item").style.display = "inline-block";
+    });
+
+    $('#register_button').on('click',function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if($('#r_username').val() != "" && $('#r_password').val() != "" && $('#name').val() != "" && $('#email').val() != "" && $('#phone').val() != "" && $('#cityChoice').val() != "" ){
+            if( isPhone($('#phone').val()) == false ){
+                document.getElementById("phone_tips2").style.display = "inline-block";
+                $('#phone').focus();
+            }else if( isEmail($('#email').val()) == false ){
+                document.getElementById("email_tips2").style.display = "inline-block";
+                $('#email').focus();
+            }else {
+                var r_username = $('#r_username').val();
+                var r_password = $('#r_password').val();
+                var name = $('#name').val();
+                var email = $('#email').val();
+                var phone = $('#phone').val();
+                var cityChoice = $('#cityChoice').val();
+                $.ajax({
+                    type:"POST",
+                    url:"user_register",
+                    dataType:"json",
+                    data:{
+                        username:r_username,
+                        password:r_password ,
+                        name:name,
+                        email:email,
+                        phone:phone,
+                        region:cityChoice,
+                    },
+                    success:function (data)
+                    {
+                        if(data.status == "ok"){
+                            $.Pop('注册成功！',{Close:false});
+                            $('#name').val("");
+                            $('#email').val("");
+                            $('#phone').val("");
+                            $('#cityChoice').val("");
+                            document.getElementById("user_register_item").style.display = "none";
+                            $('#username').val(r_username);
+                            $('#password').val(r_username);
+                        }else {
+                            $.Pop('注册错误！',{Close:false});
+                            $('#r_username').focus();
+                        }
+                    }
+                })
+            }
+        }
+
+        if( $('#r_username').val() == "" ){
+            document.getElementById("username_tips").style.display = "inline-block";
+        }else {
+            document.getElementById("username_tips").style.display = "none";
+        }
+
+        if($('#r_password').val() == ""){
+            document.getElementById("password_tips").style.display = "inline-block";
+        }else {
+            document.getElementById("password_tips").style.display = "none";
+        }
+
+        if($('#name').val() == ""){
+            document.getElementById("name_tips").style.display = "inline-block";
+        }else {
+            document.getElementById("name_tips").style.display = "none";
+        }
+
+        if($('#email').val() == ""){
+            document.getElementById("email_tips").style.display = "inline-block";
+        }else {
+            document.getElementById("email_tips").style.display = "none";
+        }
+
+        if($('#phone').val() == ""){
+            document.getElementById("phone_tips").style.display = "inline-block";
+        }else {
+            document.getElementById("phone_tips").style.display = "none";
+        }
+
+        if($('#cityChoice').val() == ""){
+            document.getElementById("cityChoice_tips").style.display = "inline-block";
+        }else {
+            document.getElementById("cityChoice_tips").style.display = "none";
+        }
+    });
+
+</script>
+</html>

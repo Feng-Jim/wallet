@@ -1,0 +1,82 @@
+﻿/*针对第三方控件做的更改*/
+.weui_toast {
+    top: 40%;
+    -webkit-transition: initial;
+    -o-transition: initial;
+    transition: initial;
+}
+
+.weui_toast_text {
+    font-size: 14px;
+    border-radius: 5px;
+    height: auto;
+    line-height: 22px;
+}
+
+.weui_toast_content {
+    text-align: center;
+}
+
+.weui_toast_text .weui_toast_content {
+    margin: 15px;
+}
+
+.weui_dialog_hd {
+    padding: 0px 0 0px 0;
+}
+
+.weui_dialog_hd .weui_dialog_title {
+    display: inline-block;
+    margin: 15px 10px 10px 10px;
+    font-family: PingFangSC-Semibold;
+    font-weight: 900;
+    font-size: 17px;
+    line-height: 25px;
+    color: #434a54;
+}
+
+.weui_dialog_ft a {
+    font-family: PingFangSC-Semibold;
+    color: #007aff;
+    font-weight: 900;
+}
+
+.weui_dialog_title {
+}
+
+.weui_dialog_bd {
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    line-height: 25px;
+    color: #434a54;
+    margin-bottom: 10px;
+    /*margin: 7px;*/
+}
+
+.weui_dialog {
+    border-radius: 10px;
+    left: 10%;
+    width: 80%;
+}
+
+.weui_btn_dialog.primary {
+    height: 50px;
+    line-height: 50px;
+    font-size: 17px;
+    font-family: PingFangSC-Semibold;
+    font-weight: 500;
+    color: #007aff;
+}
+
+.weui_mask.weui_mask_visible {
+    opacity: 0.4;
+}
+
+.weui_dialog_ft {
+    line-height: 50px;
+    margin-top: 0;
+}
+
+.weui_loading {
+    top: 50%;
+}

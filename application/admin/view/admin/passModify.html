@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="_ADMIN_JQ_/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="_ADMIN_JQ_/plug-in.js"></script>
+
+    <meta charset="UTF-8">
+    <title>密码修改</title>
+    <style type="text/css">
+        .leftBox{
+            position: absolute;
+            box-sizing: border-box;
+            width: 20%;
+            height: 100%;
+            background: #4d5e70 bottom;
+        }
+        .rightBox{
+            box-sizing: border-box;
+            position: absolute;
+            height: 100%;
+            width: 84.5%;
+            background: #e3e8ee bottom;
+            margin-left: 202px;
+        }
+        .content-title{
+            position: absolute;
+            width: 100%;
+            height: 100px;
+            background-color:#4d5e70;
+            color: #828e9a;
+            font-size: 20px;
+            display: block;
+        }
+        .pass_modify_item{
+            padding-top: 70px;
+            position: absolute;
+            margin-top: 180px;
+            margin-left: 300px;
+            background: white;
+            /*border: #999999 solid 2px;*/
+            border-radius: 10px;
+            width: 520px;
+            height: 300px;
+            display: inline-block;
+        }
+        .passModify_button{
+            background: #4d5e70;
+            font-size: 20px;
+            color: white;
+            width: 200px;
+            border-radius: 8px;
+            height: 35px;
+            border: none;
+        }
+        .two{
+            background: #3d4e60 !important;
+        }
+    </style>
+</head>
+<body>
+<div class="leftBox">
+    {include file="public/left" /}
+</div>
+
+<div class="rightBox" id="modify_pass">
+    <div class="content-title">
+        <div style="margin-top: 35px;font-size: 28px" align="center">
+            修改密码
+        </div>
+    </div>
+    <div class="content-item">
+        <form id="passModify_form">
+            <div class="pass_modify_item" align="center" style="">
+                <div>
+                    <span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;原密码：</span>
+                    <input id="password" name="password" placeholder="请输入原密码" type="password" style="width: 300px;height: 28px;">
+                    <div id="password_tips" style="display: none;color: red">请输入正确密码！</div>
+                </div>
+                <div style="margin-top: 28px">
+                    <span style="font-size: 20px;color: #9095ab;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新密码：</span>
+                    <input id="new_password" name="new_password" placeholder="请输入新密码" type="password" style="width: 300px;height: 28px;">
+                </div>
+                <div style="margin-top: 28px">
+                    <span style="font-size: 20px;color: #9095ab;">确认新密码：</span>
+                    <input id="new_password2" name="new_password2" placeholder="请再次输入新密码" type="password" style="width: 300px;height: 28px;">
+                    <span id="password_tips2" style="display: none;color: red">请再次确认新密码！</span>
+                </div>
+                <div class="" align="center" style="margin-top: 28px">
+                    <button id="ModifyButton" class="passModify_button">修改</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+<script>
+    $('#ModifyButton').on('click',function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var password = $('#password').val();
+        var new_password = $('#new_password').val();
+        var new_password2 = $('#new_password2').val();
+        if(password != "" && new_password != "" && new_password2 != ""){
+            if( new_password == new_password2 ){
+                $.ajax({
+                    type:"POST",
+                    url:"password_Modify",
+                    dataType:"json",
+                    data:{
+                        password:password ,
+                        new_password:new_password,
+                        new_password2:new_password2
+                    },
+                    success:function (data)
+                    {
+                        if (data.status == "ok"){
+                            $.Pop('密码修改成功,请重新登录！',{Close:window.location.href="/index/Index/login"});
+                            $('#password').val('');
+                            $('#new_password').val('');
+                            $('#new_password2').val('');
+                            $('#password').focus();
+                        }else if(data.status == "fail"){
+                            $.Pop('修改失败！',{Close:false});
+                        }else {
+
+                            document.getElementById("password_tips").style.display = "block";
+                            $('#password').val('');
+                            $('#password').focus();
+                        }
+                    }
+                })
+            }else {
+                document.getElementById("password_tips2").style.display = "block";
+                $('#new_password2').val('');
+                $('#new_password2').focus();
+            }
+        }else {
+            $.Pop('所有文本框不能为空！',{Close:false});
+        }
+    })
+
+    $('#password').focus(function () {
+        document.getElementById("password_tips").style.display = "none";
+    });
+    $('#new_password2').focus(function () {
+        document.getElementById("password_tips2").style.display = "none";
+    });
+</script>
+</html>
